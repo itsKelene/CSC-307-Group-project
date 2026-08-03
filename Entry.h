@@ -3,10 +3,6 @@
 
 #include <string>
 
-// Entry represents a single username/hashedPassword pairing stored inside
-// a bucket (vector) of the PasswordHashTable. Since the hash table is
-// implemented as an array of vectors, collisions are resolved by the
-// vector itself, so Entry does not need a "next" pointer.
 class Entry {
 private:
     std::string username;

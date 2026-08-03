@@ -5,39 +5,21 @@
 #include <vector>
 #include "Entry.h"
 
-// PasswordHashTable is a Chained Hash Table implemented as an array of
-// vectors, following the CSC 307 course's hash table design (see
-// "Hash Tables" lecture, CSC 307: Data Structures). Each slot ("bucket")
-// is a vector<Entry>; collisions are resolved by simply pushing the
-// colliding Entry onto that bucket's vector.
 class PasswordHashTable {
 private:
     std::vector<Entry>* table;
     int num_items;
     int num_slots;
 
-    // Sums the ASCII values of a string's characters.
     int ascii_sum(const std::string &key) const;
-
-    // Computes a bucket index in the range [0, num_slots) for a given key.
     int hash(const std::string &key) const;
-
-    // Doubles (to the next prime) the table size and re-inserts all
-    // existing entries. Called automatically by insert() when the table
-    // reaches 75% capacity.
     void grow_table();
-
-    // A simplistic, non-cryptographic hash used to obscure stored
-    // passwords. This course does not cover cryptographic hashing
-    // (see "Introduction to Hashing" lecture), so this uses a simple
-    // djb2-style string hash instead of a secure algorithm like SHA-256.
     std::string hashPassword(const std::string &password) const;
 
 public:
     explicit PasswordHashTable(int size = 211);
     ~PasswordHashTable();
 
-    // Prevent copying since this class manages a raw dynamic array.
     PasswordHashTable(const PasswordHashTable&) = delete;
     PasswordHashTable& operator=(const PasswordHashTable&) = delete;
 

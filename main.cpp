@@ -34,7 +34,6 @@ int main() {
         cout << "> ";
 
         if (!getline(cin, line)) {
-            // Input stream closed (e.g., EOF from a redirected file).
             cout << "\n";
             break;
         }
